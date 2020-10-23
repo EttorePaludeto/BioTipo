@@ -22,8 +22,10 @@ namespace AnaliseFinanceira
 
         public void carregar()
         {
-            string Diretorio = Caminho();
-            FileInfo[] arquivos = new DirectoryInfo(Diretorio).GetFiles();
+            var path = Caminho();
+            if (path == null) return;
+            
+            FileInfo[] arquivos = new DirectoryInfo(path).GetFiles();
 
             var Lista = new List<prod>();
 
@@ -61,6 +63,7 @@ namespace AnaliseFinanceira
         // a = @"C:\Users\adm_3\Desktop\Trabalhos em Andamento\BioTipo Farmácia\Xmls Compras e Vendas\xmls\cupons";
 
             FolderBrowserDialog folder = new FolderBrowserDialog();
+            folder.SelectedPath = @"C:\Users\ettor\source\repos\Desenvolvimento\BioTipo Farmácia\Xmls Compras e Vendas\xmls";
             folder.ShowDialog();
                         
             return folder.SelectedPath;
@@ -70,8 +73,10 @@ namespace AnaliseFinanceira
 
         public void carregarCFe()
         {
-            string Diretorio = Caminho();
-            FileInfo[] arquivos = new DirectoryInfo(Diretorio).GetFiles();
+            var path = Caminho();
+            if (path == null) return;
+
+            FileInfo[] arquivos = new DirectoryInfo(path).GetFiles();
 
 
             progressBar1.Value = 0;
