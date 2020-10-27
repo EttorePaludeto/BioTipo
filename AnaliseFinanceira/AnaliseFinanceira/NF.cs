@@ -39,6 +39,7 @@ namespace AnaliseFinanceira
         public string Descricao { get; set; }
         public string NCM { get; set; }
         public string CEST { get; set; }
+        public string CFOP { get; set; }
         public string Un { get; set; }
         public decimal Quantidade { get; set; }
         public decimal Valor { get; set; }

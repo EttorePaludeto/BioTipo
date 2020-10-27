@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             this.pivotGridControl1 = new DevExpress.XtraPivotGrid.PivotGridControl();
             this.produtosBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.nFBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.fieldCodigo1 = new DevExpress.XtraPivotGrid.PivotGridField();
             this.fieldDescricao1 = new DevExpress.XtraPivotGrid.PivotGridField();
             this.fieldNCM1 = new DevExpress.XtraPivotGrid.PivotGridField();
@@ -55,10 +54,13 @@
             this.xmlNFeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cFeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.pivotGridField11 = new DevExpress.XtraPivotGrid.PivotGridField();
+            this.nFBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.fieldCFOP = new DevExpress.XtraPivotGrid.PivotGridField();
             ((System.ComponentModel.ISupportInitialize)(this.pivotGridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.produtosBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nFBindingSource)).BeginInit();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nFBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // pivotGridControl1
@@ -83,20 +85,18 @@
             this.pivotGridField7,
             this.pivotGridField8,
             this.pivotGridField9,
-            this.pivotGridField10});
+            this.pivotGridField10,
+            this.pivotGridField11,
+            this.fieldCFOP});
             this.pivotGridControl1.Location = new System.Drawing.Point(0, 24);
             this.pivotGridControl1.Name = "pivotGridControl1";
-            this.pivotGridControl1.Size = new System.Drawing.Size(863, 490);
+            this.pivotGridControl1.Size = new System.Drawing.Size(900, 506);
             this.pivotGridControl1.TabIndex = 0;
             // 
             // produtosBindingSource
             // 
             this.produtosBindingSource.DataMember = "Produtos";
             this.produtosBindingSource.DataSource = this.nFBindingSource;
-            // 
-            // nFBindingSource
-            // 
-            this.nFBindingSource.DataSource = typeof(AnaliseFinanceira.NF);
             // 
             // fieldCodigo1
             // 
@@ -139,7 +139,7 @@
             // fieldQuantidade1
             // 
             this.fieldQuantidade1.Area = DevExpress.XtraPivotGrid.PivotArea.DataArea;
-            this.fieldQuantidade1.AreaIndex = 0;
+            this.fieldQuantidade1.AreaIndex = 1;
             this.fieldQuantidade1.Caption = "Quantidade";
             this.fieldQuantidade1.FieldName = "Quantidade";
             this.fieldQuantidade1.Name = "fieldQuantidade1";
@@ -147,7 +147,7 @@
             // fieldValor1
             // 
             this.fieldValor1.Area = DevExpress.XtraPivotGrid.PivotArea.DataArea;
-            this.fieldValor1.AreaIndex = 1;
+            this.fieldValor1.AreaIndex = 3;
             this.fieldValor1.Caption = "Valor";
             this.fieldValor1.FieldName = "Valor";
             this.fieldValor1.Name = "fieldValor1";
@@ -222,7 +222,7 @@
             // pivotGridField9
             // 
             this.pivotGridField9.Area = DevExpress.XtraPivotGrid.PivotArea.DataArea;
-            this.pivotGridField9.AreaIndex = 1;
+            this.pivotGridField9.AreaIndex = 2;
             this.pivotGridField9.Caption = "Alq Iss";
             this.pivotGridField9.FieldName = "ISS.alq";
             this.pivotGridField9.Name = "pivotGridField9";
@@ -230,7 +230,7 @@
             // pivotGridField10
             // 
             this.pivotGridField10.Area = DevExpress.XtraPivotGrid.PivotArea.DataArea;
-            this.pivotGridField10.AreaIndex = 2;
+            this.pivotGridField10.AreaIndex = 4;
             this.pivotGridField10.Caption = "Iss";
             this.pivotGridField10.FieldName = "ISS.imp";
             this.pivotGridField10.Name = "pivotGridField10";
@@ -238,9 +238,9 @@
             // progressBar1
             // 
             this.progressBar1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.progressBar1.Location = new System.Drawing.Point(0, 491);
+            this.progressBar1.Location = new System.Drawing.Point(0, 507);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(863, 23);
+            this.progressBar1.Size = new System.Drawing.Size(900, 23);
             this.progressBar1.TabIndex = 2;
             // 
             // carregarToolStripMenuItem
@@ -274,15 +274,34 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(863, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(900, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
+            // 
+            // pivotGridField11
+            // 
+            this.pivotGridField11.Area = DevExpress.XtraPivotGrid.PivotArea.ColumnArea;
+            this.pivotGridField11.AreaIndex = 0;
+            this.pivotGridField11.Caption = "CFOP";
+            this.pivotGridField11.Name = "pivotGridField11";
+            // 
+            // nFBindingSource
+            // 
+            this.nFBindingSource.DataSource = typeof(AnaliseFinanceira.NF);
+            // 
+            // fieldCFOP
+            // 
+            this.fieldCFOP.Area = DevExpress.XtraPivotGrid.PivotArea.ColumnArea;
+            this.fieldCFOP.AreaIndex = 1;
+            this.fieldCFOP.Caption = "CFOP";
+            this.fieldCFOP.FieldName = "CFOP";
+            this.fieldCFOP.Name = "fieldCFOP";
             // 
             // frmCompras
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(863, 514);
+            this.ClientSize = new System.Drawing.Size(900, 530);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.pivotGridControl1);
             this.Controls.Add(this.menuStrip1);
@@ -291,9 +310,9 @@
             this.Text = "Compras";
             ((System.ComponentModel.ISupportInitialize)(this.pivotGridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.produtosBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nFBindingSource)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nFBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -327,6 +346,8 @@
         private System.Windows.Forms.ToolStripMenuItem xmlNFeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cFeToolStripMenuItem;
         private System.Windows.Forms.MenuStrip menuStrip1;
+        private DevExpress.XtraPivotGrid.PivotGridField pivotGridField11;
+        private DevExpress.XtraPivotGrid.PivotGridField fieldCFOP;
     }
 }
 

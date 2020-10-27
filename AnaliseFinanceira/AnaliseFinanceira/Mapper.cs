@@ -63,6 +63,7 @@ namespace AnaliseFinanceira
                     Codigo = item.prod.cProd,
                     Descricao = item.prod.xProd,
                     NCM = item.prod.NCM,
+                    CFOP = item.prod.CFOP.ToString(),
                     CEST = item.prod.CEST,
                     Un = item.prod.uCom,
                     Quantidade = item.prod.qCom,
@@ -175,7 +176,7 @@ namespace AnaliseFinanceira
                 },
                 Destinatario = new dest
                 {
-                    CNPJ = cFe.InfCFe.Dest.CNPJ,
+                    CNPJ = cFe.InfCFe.Dest.CNPJ.DefaultIfNull(cFe.InfCFe.Dest.CPF),
                     Nome = cFe.InfCFe.Dest.Nome
                 }
             };
@@ -197,6 +198,7 @@ namespace AnaliseFinanceira
                     Codigo = item.Prod.CProd,
                     Descricao = item.Prod.XProd,
                     NCM = item.Prod.NCM,
+                    CFOP = item.Prod.CFOP,
                     Un = item.Prod.UCom,
                     Quantidade = item.Prod.QCom,
                     Valor = item.Prod.VProd,
@@ -265,4 +267,18 @@ namespace AnaliseFinanceira
 
 
     }
+
+
+    public static class StringsExtensions
+    {
+        public static string DefaultIfNull(this string str, string ValorDefault)
+        {
+            if (str is null)
+            {
+                return ValorDefault;
+            }
+            return str;
+        }
+    }
+
 }
