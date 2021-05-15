@@ -1,69 +1,56 @@
 ﻿using ACBr.Net.Sat;
-using DevExpress.DataProcessing;
-using DevExpress.Utils.Extensions;
-using DFe.Utils;
+using AnaliseFinanceira.Utils;
 using NFe.Classes;
 using NFe.Classes.Informacoes.Detalhe;
 using NFe.Classes.Informacoes.Detalhe.Tributacao;
-using NFe.Classes.Informacoes.Detalhe.Tributacao.Estadual;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace AnaliseFinanceira
 {
     public static class Mapper
     {
-        public static IEnumerable<NF> MapperNFs(List<nfeProc> ListnfeProc)
+        public static IEnumerable<NF> MapperNFs(List<nfeProc> listnfeProc)
         {
             var nfs = new List<NF>();
-
-            foreach (var nfeProc in ListnfeProc)
+            foreach (var nfeProc in listnfeProc)
             {
                 nfs.Add(MapperNF(nfeProc));
             }
             return nfs;
         }
-
         public static NF MapperNF(nfeProc nfeProc)
         {
-
             var nf = new NF
             {
                 Numero = nfeProc.NFe.infNFe.ide.nNF,
                 Data = ((DateTimeOffset)nfeProc.NFe.infNFe.ide.dhEmi).DateTime,
-                Emitente = new emit
+                Competencia = ((DateTimeOffset)nfeProc.NFe.infNFe.ide.dhEmi).DateTime.ExtrairCompetencia(),
+                Emitente = new Emit
                 {
                     CNPJ = nfeProc.NFe.infNFe.emit.CNPJ,
                     Nome = nfeProc.NFe.infNFe.emit.xNome,
                 },
-                Destinatario = new dest
+                Destinatario = new Dest
                 {
                     CNPJ = nfeProc.NFe.infNFe.dest.CNPJ,
                     Nome = nfeProc.NFe.infNFe.dest.xNome
                 }
             };
-
-            nf.Produtos = new List<prod>(MapperDets(nfeProc, nf));
-
+            nf.Produtos = new List<Prod>(MapperDets(nfeProc, nf));
             return nf;
-
         }
-
-        public static IEnumerable<prod> MapperDets(nfeProc nfeProc, NF nf)
+        public static IEnumerable<Prod> MapperDets(nfeProc nfeProc, NF nf)
         {
-            var prods = new List<prod>();
-
+            var prods = new List<Prod>();
             foreach (var item in nfeProc.NFe.infNFe.det)
             {
-                prods.Add(new prod
+                prods.Add(new Prod
                 {
                     Codigo = item.prod.cProd,
                     Descricao = item.prod.xProd,
                     NCM = item.prod.NCM,
                     CFOP = item.prod.CFOP.ToString(),
+                    Categoria = AtribuirCategoria.Compras(item.prod.CFOP.ToString()),
                     CEST = item.prod.CEST,
                     Un = item.prod.uCom,
                     Quantidade = item.prod.qCom,
@@ -74,126 +61,109 @@ namespace AnaliseFinanceira
             }
             return prods;
         }
-
-        public static impICMS MapperICMS(det item)
+        public static ImpICMS MapperICMS(det item)
         {
-            var icms = new impICMS
+            var icms = new ImpICMS
             {
-                cst = "",
-                bc = 0,
-                alq = 0,
-                imp = 0
+                Cst = "",
+                Bc = 0,
+                Alq = 0,
+                Imp = 0
             };
-
             if (item.imposto.ICMS != null)
             {
-                icms.cst = item.imposto.ICMS.TipoICMS.GetIcmsCst().ToString();
-                icms.bc = item.imposto.ICMS.TipoICMS.GetIcmsBcValue();
-                icms.alq = item.imposto.ICMS.TipoICMS.GetIcmsPercent();
-                icms.imp = item.imposto.ICMS.TipoICMS.GetIcmsValue();
+                icms.Cst = item.imposto.ICMS.TipoICMS.GetIcmsCst().ToString();
+                icms.Bc = item.imposto.ICMS.TipoICMS.GetIcmsBcValue();
+                icms.Alq = item.imposto.ICMS.TipoICMS.GetIcmsPercent();
+                icms.Imp = item.imposto.ICMS.TipoICMS.GetIcmsValue();
             }
-
             return icms;
-
         }
-
-        public static impICMS MapperICMS(CFeDet item)
+        public static ImpICMS MapperICMS(CFeDet item)
         {
-            var icms = new impICMS
+            var icms = new ImpICMS
             {
-                cst = "",
-                bc = 0,
-                alq = 0,
-                imp = 0
+                Cst = "",
+                Bc = 0,
+                Alq = 0,
+                Imp = 0
             };
-
             if (item.Imposto.Imposto.GetType() == typeof(ImpostoIcms))
             {
                 var icmsCFe = (ImpostoIcms)item.Imposto.Imposto;
-
                 if (icmsCFe.GetType() == typeof(ImpostoIcms00))
                 {
                     var tagICMS = ((ImpostoIcms00)icmsCFe.Icms);
-                    icms = new impICMS
+                    icms = new ImpICMS
                     {
-                        cst = tagICMS.Cst,
-                        alq = tagICMS.PIcms,
-                        imp = tagICMS.VIcms,
-                        bc = tagICMS.VIcms / tagICMS.PIcms * 100
+                        Cst = tagICMS.Cst,
+                        Alq = tagICMS.PIcms,
+                        Imp = tagICMS.VIcms,
+                        Bc = tagICMS.VIcms / tagICMS.PIcms * 100
                     };
                 }
                 if (icmsCFe.GetType() == typeof(ImpostoIcms40))
                 {
                     var tagICMS = ((ImpostoIcms40)icmsCFe.Icms);
-                    icms = new impICMS
+                    icms = new ImpICMS
                     {
-                        cst = tagICMS.Cst,
-                        alq = 0,
-                        imp = 0,
-                        bc = 0
+                        Cst = tagICMS.Cst,
+                        Alq = 0,
+                        Imp = 0,
+                        Bc = 0
                     };
                 }
                 if (icmsCFe.GetType() == typeof(ImpostoIcmsSn102))
                 {
                     var tagICMS = ((ImpostoIcmsSn102)icmsCFe.Icms);
-                    icms = new impICMS
+                    icms = new ImpICMS
                     {
-                        cst = tagICMS.Csosn,
-                        alq = 0,
-                        imp = 0,
-                        bc = 0
+                        Cst = tagICMS.Csosn,
+                        Alq = 0,
+                        Imp = 0,
+                        Bc = 0
                     };
                 }
                 if (icmsCFe.GetType() == typeof(ImpostoIcmsSn900))
                 {
                     var tagICMS = ((ImpostoIcmsSn900)icmsCFe.Icms);
-                    icms = new impICMS
+                    icms = new ImpICMS
                     {
-                        cst = tagICMS.Csosn,
-                        alq = tagICMS.PIcms,
-                        imp = tagICMS.VIcms,
-                        bc = tagICMS.VIcms / tagICMS.PIcms * 100
+                        Cst = tagICMS.Csosn,
+                        Alq = tagICMS.PIcms,
+                        Imp = tagICMS.VIcms,
+                        Bc = tagICMS.VIcms / tagICMS.PIcms * 100
                     };
                 }
-
             }
-
             return icms;
-
         }
-
         public static CFeSat MapperCFe(CFe cFe)
         {
-
             var nf = new CFeSat
             {
                 Numero = cFe.InfCFe.Ide.NCFe,
                 Data = cFe.InfCFe.Ide.DEmi,
-                Emitente = new emit
+                Emitente = new Emit
                 {
                     CNPJ = cFe.InfCFe.Emit.CNPJ,
                     Nome = cFe.InfCFe.Emit.XNome,
                 },
-                Destinatario = new dest
+                Destinatario = new Dest
                 {
                     CNPJ = cFe.InfCFe.Dest.CNPJ.DefaultIfNull(cFe.InfCFe.Dest.CPF),
                     Nome = cFe.InfCFe.Dest.Nome
                 }
             };
-
-            nf.Produtos = new List<prod>(MapperDets(cFe, nf));
-
+            nf.Produtos = new List<Prod>(MapperDets(cFe, nf));
             return nf;
-
         }
-
-        public static IEnumerable<prod> MapperDets(CFe cFe, NF nf)
+        public static IEnumerable<Prod> MapperDets(CFe cFe, NF nf)
         {
-            var prods = new List<prod>();
-
+            var prods = new List<Prod>();
             foreach (var item in cFe.InfCFe.Det)
             {
-                prods.Add(new prod
+                prods.Add(new Prod
                 {
                     Codigo = item.Prod.CProd,
                     Descricao = item.Prod.XProd,
@@ -209,76 +179,46 @@ namespace AnaliseFinanceira
             }
             return prods;
         }
-
-        public static impISS MapperISS(det item)
+        public static ImpISS MapperISS(det item)
         {
-            var iss = new impISS
+            var iss = new ImpISS
             {
-                bc = 0,
-                alq = 0,
-                imp = 0
+                Bc = 0,
+                Alq = 0,
+                Imp = 0
             };
-
             if (item.imposto.ISSQN != null)
             {
-                iss.bc = item.imposto.ISSQN.vBC;
-                iss.alq = item.imposto.ISSQN.vAliq;
-                iss.imp = item.imposto.ISSQN.vISSQN;
+                iss.Bc = item.imposto.ISSQN.vBC;
+                iss.Alq = item.imposto.ISSQN.vAliq;
+                iss.Imp = item.imposto.ISSQN.vISSQN;
             }
-
             return iss;
-
         }
-        public static impISS MapperISS(CFeDet item)
+        public static ImpISS MapperISS(CFeDet item)
         {
-
-            var iss = new impISS
+            var iss = new ImpISS
             {
-                bc = 0,
-                alq = 0,
-                imp = 0
+                Bc = 0,
+                Alq = 0,
+                Imp = 0
             };
-
             if (item.Imposto.Imposto != null)
             {
                 if (item.Imposto.Imposto.GetType() == typeof(ImpostoIssqn))
                 {
                     var issCFe = (ImpostoIssqn)item.Imposto.Imposto;
-
-                    iss = new impISS
+                    iss = new ImpISS
                     {
-                        bc = issCFe.VBc,
-                        alq = issCFe.VAliq,
-                        imp = issCFe.VIssqn
+                        Bc = issCFe.VBc,
+                        Alq = issCFe.VAliq,
+                        Imp = issCFe.VIssqn
                     };
-
-
                 }
-
-
-
-                //iss.alq = item.imposto.ISSQN.vAliq;
-                //iss.imp = item.imposto.ISSQN.vISSQN;
+                //iss.Alq = item.imposto.ISSQN.vAliq;
+                //iss.Imp = item.imposto.ISSQN.vISSQN;
             }
-
             return iss;
-
-        }
-
-
-    }
-
-
-    public static class StringsExtensions
-    {
-        public static string DefaultIfNull(this string str, string ValorDefault)
-        {
-            if (str is null)
-            {
-                return ValorDefault;
-            }
-            return str;
         }
     }
-
 }

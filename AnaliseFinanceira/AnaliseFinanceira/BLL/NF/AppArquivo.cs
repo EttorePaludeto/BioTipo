@@ -1,5 +1,8 @@
 ﻿using System;
 using System.IO;
+using System.Xml;
+using ACBr.Net.Sat;
+using NFe.Classes;
 
 namespace AnaliseFinanceira
 {
@@ -10,6 +13,13 @@ namespace AnaliseFinanceira
         public byte[] Conteudo { get; private set; }
         public long Tamanho { get; private set; }
         public string Extensao { get; private set; }
+        public SchemaXmlDFe SchemaXmlDFe { get; set; }
+        public XmlDocument DocumentoXml { get; set; }
+        public nfeProc NfeProc { get; set; }
+        public CFe CfeProc { get; set; }
+        public TipoEntradaOuSaida TipoNFe { get; set; }
+        public string MessageError { get; set; }
+        public bool IsValid { get; set; }
 
         public AppArquivo(string nome, string extensao, byte[] conteudo, long tamanho)
         {
@@ -29,5 +39,17 @@ namespace AnaliseFinanceira
             Extensao = extensao;
             stream.Dispose();
         }
+        public AppArquivo(FileInfo fileInfo, string[] cnpjs, DateTime[] rangeData)
+        {
+            Id = Guid.NewGuid();
+            Nome = fileInfo.Name;
+            Conteudo = File.ReadAllBytes(fileInfo.FullName);
+            Tamanho = fileInfo.Length;
+            Extensao = fileInfo.Extension;
+            SchemaXmlDFe = AtribuirSchemaEDocumentoXml.SetXML(this);
+            AtribuirRangeDatas.RangeDatas(this, rangeData);
+            TipoNFe = AtribuirTipoNFePertecenceEmpresa.SetTipoNFe(this, cnpjs);
+        }
+
     }
 }

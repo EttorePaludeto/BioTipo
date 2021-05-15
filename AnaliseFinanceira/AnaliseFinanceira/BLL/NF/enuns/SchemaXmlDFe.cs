@@ -14,7 +14,7 @@ namespace AnaliseFinanceira
         CTe = 3,
         cteOSProc = 4,
         procEventoNfe = 5,
+        CFe = 6,
         Erro = 99
-
     }
 }

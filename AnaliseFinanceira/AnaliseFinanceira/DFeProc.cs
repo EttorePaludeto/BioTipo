@@ -8,27 +8,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
-
 namespace AnaliseFinanceira
 {
     public class DFeProc
     {
         public IAppArquivo Arquivo { get; private set; }
-        //public cteProc cteProc { get; private set; }
-        //public cteOSProc cteOSproc { get; private set; }
-        public nfeProc nfeProc { get; private set; }
+        public nfeProc NfeProc { get; private set; }
         public SchemaXmlDFe SchemaXml { get; private set; }
         public System.Xml.XmlDocument Xml { get; private set; }
         public bool IsXmlDFe { get; private set; }
-
-
         public DFeProc(IAppArquivo arquivo)
         {
             Arquivo = arquivo;
             Iniciar();
         }
-       
-
         private void Iniciar()
         {
             if (DeserializarXml() == false)
@@ -41,16 +34,13 @@ namespace AnaliseFinanceira
                 IsXmlDFe = false;
                 return;
             }
-
             TiparDFe();
-
-
         }
         private bool DeserializarXml()
         {
             if (Arquivo.Extensao.ToUpper() != ".XML")
             {
-               MessageBox.Show("Erro", "O Arquivo não é do tipo Xml");
+                Arquivo.MessageError = $"Erro - O Arquivo não é do tipo Xml. Nome Arquivo: {Arquivo.Nome}";
                 return false;
             }
             Xml = new XmlDocument();
@@ -64,15 +54,13 @@ namespace AnaliseFinanceira
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro", $"Ao deserializar o xml: {ex}");
+                Arquivo.MessageError = $"Erro - O Arquivo não é do tipo Xml. Nome Arquivo: {Arquivo.Nome}";
                 return false;
             }
-
         }
         private bool GetSchemaXml()
         {
             var root = Xml.DocumentElement;
-
             switch (root.Name)
             {
                 case "nfeProc":
@@ -92,28 +80,27 @@ namespace AnaliseFinanceira
                     return true;
                 default:
                     SchemaXml = SchemaXmlDFe.Erro;
-                    MessageBox.Show("Erro", $"Arquivo XML com schema desconhecido");
+                    Arquivo.MessageError = $"Erro - Arquivo XML com schema desconhecido. Nome Arquivo: {Arquivo.Nome}";
                     return false;
             }
-
         }
         private void TiparDFe()
         {
             switch (SchemaXml)
             {
                 case SchemaXmlDFe.nfeProc:
-                    criarnfeProc();
+                    CriarnfeProc();
                     break;
                 case SchemaXmlDFe.NFe:
-                    criarTagnfeProc();
-                    criarnfeProc();
+                    CriarTagnfeProc();
+                    CriarnfeProc();
                     break;
                 case SchemaXmlDFe.cteProc:
                     //criarcteProc();
                     break;
                 case SchemaXmlDFe.CTe:
-                    criarTagcteProc();
-                   // criarcteProc();
+                    CriarTagcteProc();
+                    // criarcteProc();
                     break;
                 case SchemaXmlDFe.cteOSProc:
                     //criarcteOSProc();
@@ -126,17 +113,15 @@ namespace AnaliseFinanceira
                     break;
             }
         }
-        private void criarnfeProc()
+        private void CriarnfeProc()
         {
-            nfeProc = FuncoesXml.XmlStringParaClasse<nfeProc>(Xml.OuterXml);
+            NfeProc = FuncoesXml.XmlStringParaClasse<nfeProc>(Xml.OuterXml);
         }
-        private void criarTagnfeProc()
+        private void CriarTagnfeProc()
         {
             XmlElement TnfeProc = Xml.CreateElement("nfeProc", "http://www.portalfiscal.inf.br/nfe");
             TnfeProc.SetAttribute("versao", Xml.GetElementsByTagName("infNFe")[0].Attributes["versao"].Value);
-
             var itens = Xml.GetElementsByTagName("NFe");
-
             for (int i = 0; i < itens.Count; i++)
             {
                 TnfeProc.AppendChild(itens[i]);
@@ -147,13 +132,11 @@ namespace AnaliseFinanceira
         //{
         //    cteProc = FuncoesXml.XmlStringParaClasse<cteProc>(Xml.OuterXml);
         //}
-        private void criarTagcteProc()
+        private void CriarTagcteProc()
         {
             XmlElement TnfeProc = Xml.CreateElement("cteProc", "http://www.portalfiscal.inf.br/cte");
             TnfeProc.SetAttribute("versao", Xml.GetElementsByTagName("intCte")[0].Attributes["versao"].Value);
-
             var itens = Xml.GetElementsByTagName("CTe");
-
             for (int i = 0; i < itens.Count; i++)
             {
                 TnfeProc.AppendChild(itens[i]);

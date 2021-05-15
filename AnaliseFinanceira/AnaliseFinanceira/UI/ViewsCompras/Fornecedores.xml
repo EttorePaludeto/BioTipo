@@ -1,0 +1,262 @@
+﻿<XtraSerializer version="1.0" application="PivotGrid">
+  <property name="#LayoutVersion" />
+  <property name="#LayoutScaleFactor">@1,Width=1@1,Height=1</property>
+  <property name="Fields" iskey="true" value="16">
+    <property name="Item1" isnull="true" iskey="true">
+      <property name="ImageIndex">-1</property>
+      <property name="ToolTips" isnull="true" iskey="true">
+        <property name="HeaderText" />
+        <property name="ValueText" />
+      </property>
+      <property name="FieldEditName" />
+      <property name="Name">fieldCodigo1</property>
+      <property name="FieldName">Codigo</property>
+      <property name="Index">0</property>
+      <property name="AreaIndex">10</property>
+      <property name="MinWidth">20</property>
+      <property name="Width">100</property>
+      <property name="Visible">false</property>
+    </property>
+    <property name="Item2" isnull="true" iskey="true">
+      <property name="ImageIndex">-1</property>
+      <property name="ToolTips" isnull="true" iskey="true">
+        <property name="HeaderText" />
+        <property name="ValueText" />
+      </property>
+      <property name="FieldEditName" />
+      <property name="Name">fieldDescricao1</property>
+      <property name="Area">RowArea</property>
+      <property name="FieldName">Descricao</property>
+      <property name="Index">1</property>
+      <property name="AreaIndex">0</property>
+      <property name="MinWidth">20</property>
+      <property name="Width">614</property>
+      <property name="Visible">false</property>
+    </property>
+    <property name="Item3" isnull="true" iskey="true">
+      <property name="ImageIndex">-1</property>
+      <property name="ToolTips" isnull="true" iskey="true">
+        <property name="HeaderText" />
+        <property name="ValueText" />
+      </property>
+      <property name="FieldEditName" />
+      <property name="Name">fieldNCM1</property>
+      <property name="FieldName">NCM</property>
+      <property name="Index">2</property>
+      <property name="AreaIndex">0</property>
+      <property name="MinWidth">20</property>
+      <property name="Width">100</property>
+      <property name="Visible">false</property>
+    </property>
+    <property name="Item4" isnull="true" iskey="true">
+      <property name="ImageIndex">-1</property>
+      <property name="ToolTips" isnull="true" iskey="true">
+        <property name="HeaderText" />
+        <property name="ValueText" />
+      </property>
+      <property name="FieldEditName" />
+      <property name="Name">fieldUn1</property>
+      <property name="Area">RowArea</property>
+      <property name="FieldName">Un</property>
+      <property name="Index">3</property>
+      <property name="AreaIndex">0</property>
+      <property name="MinWidth">20</property>
+      <property name="Width">100</property>
+      <property name="Visible">false</property>
+    </property>
+    <property name="Item5" isnull="true" iskey="true">
+      <property name="ImageIndex">-1</property>
+      <property name="ToolTips" isnull="true" iskey="true">
+        <property name="HeaderText" />
+        <property name="ValueText" />
+      </property>
+      <property name="FieldEditName" />
+      <property name="Name">fieldQuantidade1</property>
+      <property name="Area">DataArea</property>
+      <property name="FieldName">Quantidade</property>
+      <property name="Index">4</property>
+      <property name="CellFormat" isnull="true" iskey="true">
+        <property name="FormatString">N2</property>
+        <property name="FormatType">Numeric</property>
+      </property>
+      <property name="AreaIndex">0</property>
+      <property name="MinWidth">20</property>
+      <property name="Width">100</property>
+      <property name="Visible">false</property>
+    </property>
+    <property name="Item6" isnull="true" iskey="true">
+      <property name="ImageIndex">-1</property>
+      <property name="ToolTips" isnull="true" iskey="true">
+        <property name="HeaderText" />
+        <property name="ValueText" />
+      </property>
+      <property name="FieldEditName" />
+      <property name="Name">fieldValor1</property>
+      <property name="Area">DataArea</property>
+      <property name="FieldName">Valor</property>
+      <property name="Index">5</property>
+      <property name="AreaIndex">0</property>
+      <property name="MinWidth">20</property>
+      <property name="Width">100</property>
+    </property>
+    <property name="Item7" isnull="true" iskey="true">
+      <property name="ImageIndex">-1</property>
+      <property name="ToolTips" isnull="true" iskey="true">
+        <property name="HeaderText" />
+        <property name="ValueText" />
+      </property>
+      <property name="FieldEditName" />
+      <property name="Name">fieldNfData</property>
+      <property name="FieldName">Nf.Data</property>
+      <property name="Index">6</property>
+      <property name="AreaIndex">0</property>
+      <property name="MinWidth">20</property>
+      <property name="Width">100</property>
+      <property name="Visible">false</property>
+    </property>
+    <property name="Item8" isnull="true" iskey="true">
+      <property name="ImageIndex">-1</property>
+      <property name="ToolTips" isnull="true" iskey="true">
+        <property name="HeaderText" />
+        <property name="ValueText" />
+      </property>
+      <property name="FieldEditName" />
+      <property name="Name">pivotGridField1</property>
+      <property name="FieldName">Nf.Numero</property>
+      <property name="Index">7</property>
+      <property name="AreaIndex">0</property>
+      <property name="MinWidth">20</property>
+      <property name="Width">100</property>
+      <property name="Visible">false</property>
+    </property>
+    <property name="Item9" isnull="true" iskey="true">
+      <property name="ImageIndex">-1</property>
+      <property name="ToolTips" isnull="true" iskey="true">
+        <property name="HeaderText" />
+        <property name="ValueText" />
+      </property>
+      <property name="FieldEditName" />
+      <property name="Name">pivotGridField2</property>
+      <property name="Area">RowArea</property>
+      <property name="FieldName">Nf.Destinatario.CNPJ</property>
+      <property name="Index">8</property>
+      <property name="AreaIndex">1</property>
+      <property name="MinWidth">20</property>
+      <property name="Width">518</property>
+      <property name="Visible">false</property>
+    </property>
+    <property name="Item10" isnull="true" iskey="true">
+      <property name="ImageIndex">-1</property>
+      <property name="ToolTips" isnull="true" iskey="true">
+        <property name="HeaderText" />
+        <property name="ValueText" />
+      </property>
+      <property name="FieldEditName" />
+      <property name="Name">pivotGridField3</property>
+      <property name="Area">RowArea</property>
+      <property name="FieldName">Nf.Emitente.Nome</property>
+      <property name="Index">9</property>
+      <property name="AreaIndex">0</property>
+      <property name="MinWidth">20</property>
+      <property name="Width">673</property>
+    </property>
+    <property name="Item11" isnull="true" iskey="true">
+      <property name="ImageIndex">-1</property>
+      <property name="ToolTips" isnull="true" iskey="true">
+        <property name="HeaderText" />
+        <property name="ValueText" />
+      </property>
+      <property name="FieldEditName" />
+      <property name="Name">pivotGridField4</property>
+      <property name="FieldName">ICMS.cst</property>
+      <property name="Index">10</property>
+      <property name="AreaIndex">0</property>
+      <property name="MinWidth">20</property>
+      <property name="Width">100</property>
+      <property name="Visible">false</property>
+    </property>
+    <property name="Item12" isnull="true" iskey="true">
+      <property name="ImageIndex">-1</property>
+      <property name="ToolTips" isnull="true" iskey="true">
+        <property name="HeaderText" />
+        <property name="ValueText" />
+      </property>
+      <property name="FieldEditName" />
+      <property name="Name">pivotGridField5</property>
+      <property name="FieldName">ICMS.bc</property>
+      <property name="Index">11</property>
+      <property name="AreaIndex">0</property>
+      <property name="MinWidth">20</property>
+      <property name="Width">100</property>
+      <property name="Visible">false</property>
+    </property>
+    <property name="Item13" isnull="true" iskey="true">
+      <property name="ImageIndex">-1</property>
+      <property name="ToolTips" isnull="true" iskey="true">
+        <property name="HeaderText" />
+        <property name="ValueText" />
+      </property>
+      <property name="FieldEditName" />
+      <property name="Name">pivotGridField6</property>
+      <property name="FieldName">ICMS.alq</property>
+      <property name="Index">12</property>
+      <property name="AreaIndex">0</property>
+      <property name="MinWidth">20</property>
+      <property name="Width">100</property>
+      <property name="Visible">false</property>
+    </property>
+    <property name="Item14" isnull="true" iskey="true">
+      <property name="ImageIndex">-1</property>
+      <property name="ToolTips" isnull="true" iskey="true">
+        <property name="HeaderText" />
+        <property name="ValueText" />
+      </property>
+      <property name="FieldEditName" />
+      <property name="Name">pivotGridField7</property>
+      <property name="FieldName">ICMS.imp</property>
+      <property name="Index">13</property>
+      <property name="AreaIndex">0</property>
+      <property name="MinWidth">20</property>
+      <property name="Width">100</property>
+      <property name="Visible">false</property>
+    </property>
+    <property name="Item15" isnull="true" iskey="true">
+      <property name="ImageIndex">-1</property>
+      <property name="ToolTips" isnull="true" iskey="true">
+        <property name="HeaderText" />
+        <property name="ValueText" />
+      </property>
+      <property name="FieldEditName" />
+      <property name="Name">fieldCFOP</property>
+      <property name="FieldName">CFOP</property>
+      <property name="Index">14</property>
+      <property name="AreaIndex">2</property>
+      <property name="MinWidth">20</property>
+      <property name="Width">100</property>
+      <property name="Visible">false</property>
+    </property>
+    <property name="Item16" isnull="true" iskey="true">
+      <property name="ImageIndex">-1</property>
+      <property name="ToolTips" isnull="true" iskey="true">
+        <property name="HeaderText" />
+        <property name="ValueText" />
+      </property>
+      <property name="FieldEditName" />
+      <property name="Name">pivotGridField8</property>
+      <property name="Area">ColumnArea</property>
+      <property name="FieldName">Nf.Competencia</property>
+      <property name="Index">15</property>
+      <property name="AreaIndex">0</property>
+      <property name="MinWidth">20</property>
+      <property name="Width">113</property>
+    </property>
+  </property>
+  <property name="Prefilter" isnull="true" iskey="true">
+    <property name="Criteria" isnull="true" />
+    <property name="ShowOperandTypeIcon">false</property>
+    <property name="Enabled">true</property>
+  </property>
+  <property name="DefaultFilterEditorView">Visual</property>
+  <property name="ShowCustomFunctions">Default</property>
+  <property name="Groups" iskey="true" value="0" />
+</XtraSerializer>
