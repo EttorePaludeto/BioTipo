@@ -21,6 +21,7 @@ namespace AnaliseFinanceira.UI
             InitializeComponent();
             ctxADO = new DataAccess();
           
+            
             gridView1.OptionsClipboard.PasteMode = DevExpress.Export.PasteMode.Append;
             listExtratoImportado = new BindingList<ExtratoImportado>();
            
@@ -36,8 +37,13 @@ namespace AnaliseFinanceira.UI
 
         private void BtnSalvarConciliacao_Click(object sender, EventArgs e)
         {
+            var tableId = ctxADO.ExecutaConsulta("SELECT max(id)+1 from Extrato");
+            int primeiroId = Convert.ToInt32(tableId.Rows[0].ItemArray[0]);
+            listExtratoImportado.AtribuirId(primeiroId);
             var listaExtrato = listExtratoImportado.ToExtrato();
             ctxADO.InsertBulkSql(listaExtrato.AsDataTable(), "Extrato");
+            var listaExtratoConciliado = listExtratoImportado.ToExtratoConciliado();
+            ctxADO.InsertBulkSql(listaExtratoConciliado.AsDataTable(), "ExtratoConciliado");
         }
     }
 
@@ -69,6 +75,7 @@ namespace AnaliseFinanceira.UI
             this.Valor = 0;
         }
 
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected void OnPropertyChanged(string propertyName)
@@ -82,18 +89,54 @@ namespace AnaliseFinanceira.UI
     
     public static class Map
     {
+        public static void AtribuirId(this BindingList<ExtratoImportado> importado, int primeiroId)
+        {
+            int sequenciaId = primeiroId;
+
+            foreach (var item in importado)
+            {
+                item.SeqId = sequenciaId;
+                sequenciaId++;
+            }
+
+        }
+
         public static List<Extrato> ToExtrato(this BindingList<ExtratoImportado> importado)
         {
             var listExtrato = new List<Extrato>();
+          
 
             foreach (var item in importado)
             {
                 listExtrato.Add(new Extrato(
-                    id: 0,
+                    id: item.SeqId,
                     bancoId: item.BancoId,
                     data: item.Data,
                     historico: item.Historico,
                     valor: item.Valor));
+               
+            }
+
+            return listExtrato;
+        }
+
+        public static List<ExtratoConciliado> ToExtratoConciliado(this BindingList<ExtratoImportado> importado)
+        {
+            var listExtrato = new List<ExtratoConciliado>();
+
+            foreach (var item in importado)
+            {
+                listExtrato.Add(new ExtratoConciliado(
+                    id: 0,
+                    extratoId: item.SeqId,
+                    bancoId: item.BancoId,
+                    participanteId: 0,
+                    debitoId: item.DebitoId,
+                    creditoId: item.CreditoId,
+                    data: item.Data,
+                    historico: item.Historico,
+                    valor: item.Valor,
+                    valorContabil: item.Valor.ToModulo()));
             }
 
             return listExtrato;

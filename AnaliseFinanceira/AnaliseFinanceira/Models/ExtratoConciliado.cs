@@ -11,6 +11,7 @@ namespace AnaliseFinanceira.Models
         public int Id { get; set; }
         public int BancoId { get; set; }
         public int ExtratoId { get; set; }
+        public int ParticipanteId { get; set; }
         public DateTime Data { get; set; }
         public int DebitoId { get; set; }
         public int CreditoId { get; set; }
@@ -22,11 +23,12 @@ namespace AnaliseFinanceira.Models
         {
 
         }
-        public ExtratoConciliado(int id, int bancoId, int extratoId, DateTime data, string historico, int debitoId, int creditoId, decimal valor, decimal valorContabil)
+        public ExtratoConciliado(int id, int bancoId, int extratoId, int participanteId, DateTime data, string historico, int debitoId, int creditoId, decimal valor, decimal valorContabil)
         {
             Id = id;
             BancoId = bancoId;
             ExtratoId = extratoId;
+            ParticipanteId = participanteId;
             Data = data;
             Historico = historico;
             DebitoId = debitoId;
