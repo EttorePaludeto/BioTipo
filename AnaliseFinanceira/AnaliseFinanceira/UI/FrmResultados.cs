@@ -28,7 +28,7 @@ namespace AnaliseFinanceira.UI
 
             var table = dataAccess.ExecutaConsulta(
              $@"DECLARE @DT_INI AS DATE = '2021-01-01'
-            DECLARE @DT_FIM AS DATE = '2021-03-31'
+            DECLARE @DT_FIM AS DATE = '2021-04-30'
             select y.DRE, CAST(MONTH(y.Data) AS VARCHAR(2)) + '/' + CAST(YEAR(y.Data) AS VARCHAR(4)) AS Mes, y.Conta, SUM(y.ValorContabil) Valor from
             (
             select d.id dId, d.Data, p.Id, p.Conta, p.DRE, d.ValorContabil  as ValorContabil from ExtratoConciliado as d inner join PlanoContas as p on d.DebitoId = p.Id 

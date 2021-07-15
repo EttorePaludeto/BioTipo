@@ -127,5 +127,40 @@ namespace AnaliseFinanceira.DAL
                 throw ex;
             }
         }
+
+        public int InsertBulkSql(DataTable dt, string nomeTabela)
+        {
+            try
+            {
+                //Instância o sqlcommand com a query sql que será executada e a conexão.
+                //comando = new SqlCommand(sql, connection());
+
+                // comando.CommandText = sql;
+                //Executa a query sql.
+
+                int retorno = 0;
+
+                comando.Connection = Connection();
+
+                using (SqlBulkCopy bulkCopy = new SqlBulkCopy(comando.Connection))
+                {
+                   
+                    bulkCopy.DestinationTableName = nomeTabela;
+                    bulkCopy.WriteToServer(dt);
+                    retorno = bulkCopy.BatchSize;
+                    
+                }
+
+                // int result = comando.ExecuteNonQuery();
+                sqlconnection.Close();
+                // Retorna a quantidade de linhas afetadas
+                return retorno;
+            }
+            catch (Exception ex)
+            {
+                // Retorna uma exceção simples que pode ser tratada por parte do desenvolvedor
+                throw ex;
+            }
+        }
     }
 }

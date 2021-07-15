@@ -29,6 +29,7 @@ namespace AnaliseFinanceira
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmExtratoBancario));
             this.ribbon = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.BtnCarregar = new DevExpress.XtraBars.BarButtonItem();
@@ -38,6 +39,15 @@ namespace AnaliseFinanceira
             this.btnSantander2 = new DevExpress.XtraBars.BarButtonItem();
             this.BtnConciliacao = new DevExpress.XtraBars.BarButtonItem();
             this.BtnMaquininhas = new DevExpress.XtraBars.BarButtonItem();
+            this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.BtnAriane = new DevExpress.XtraBars.BarButtonItem();
+            this.BtnEmerson = new DevExpress.XtraBars.BarButtonItem();
+            this.BtnAnaFlavia = new DevExpress.XtraBars.BarButtonItem();
+            this.BtnElizabeth = new DevExpress.XtraBars.BarButtonItem();
+            this.BtnJoao = new DevExpress.XtraBars.BarButtonItem();
+            this.BtnEnio = new DevExpress.XtraBars.BarButtonItem();
+            this.BtnMariaOdila = new DevExpress.XtraBars.BarButtonItem();
+            this.BtnBenedita = new DevExpress.XtraBars.BarButtonItem();
             this.BtnCheques = new DevExpress.XtraBars.BarButtonItem();
             this.BtnCaixa = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -47,6 +57,7 @@ namespace AnaliseFinanceira
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             this.SuspendLayout();
@@ -65,9 +76,17 @@ namespace AnaliseFinanceira
             this.BtnConciliacao,
             this.BtnMaquininhas,
             this.BtnCheques,
-            this.BtnCaixa});
+            this.BtnCaixa,
+            this.BtnAnaFlavia,
+            this.BtnBenedita,
+            this.BtnElizabeth,
+            this.BtnEnio,
+            this.BtnJoao,
+            this.BtnMariaOdila,
+            this.BtnAriane,
+            this.BtnEmerson});
             this.ribbon.Location = new System.Drawing.Point(0, 0);
-            this.ribbon.MaxItemId = 11;
+            this.ribbon.MaxItemId = 23;
             this.ribbon.Name = "ribbon";
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1});
@@ -138,14 +157,102 @@ namespace AnaliseFinanceira
             // 
             // BtnMaquininhas
             // 
-            this.BtnMaquininhas.ButtonStyle = DevExpress.XtraBars.BarButtonStyle.Check;
+            this.BtnMaquininhas.ActAsDropDown = true;
+            this.BtnMaquininhas.ButtonStyle = DevExpress.XtraBars.BarButtonStyle.DropDown;
             this.BtnMaquininhas.Caption = "Maquininhas";
+            this.BtnMaquininhas.DropDownControl = this.popupMenu1;
             this.BtnMaquininhas.GroupIndex = 1;
             this.BtnMaquininhas.Id = 8;
             this.BtnMaquininhas.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("BtnMaquininhas.ImageOptions.SvgImage")));
             this.BtnMaquininhas.Name = "BtnMaquininhas";
             this.BtnMaquininhas.Tag = 7;
-            this.BtnMaquininhas.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.CarregarBanco);
+            // 
+            // popupMenu1
+            // 
+            this.popupMenu1.ItemLinks.Add(this.BtnAriane);
+            this.popupMenu1.ItemLinks.Add(this.BtnEmerson);
+            this.popupMenu1.ItemLinks.Add(this.BtnAnaFlavia);
+            this.popupMenu1.ItemLinks.Add(this.BtnElizabeth);
+            this.popupMenu1.ItemLinks.Add(this.BtnJoao);
+            this.popupMenu1.ItemLinks.Add(this.BtnEnio);
+            this.popupMenu1.ItemLinks.Add(this.BtnMariaOdila);
+            this.popupMenu1.ItemLinks.Add(this.BtnBenedita);
+            this.popupMenu1.ItemLinks.Add(this.BtnElizabeth);
+            this.popupMenu1.Name = "popupMenu1";
+            this.popupMenu1.Ribbon = this.ribbon;
+            // 
+            // BtnAriane
+            // 
+            this.BtnAriane.Caption = "Ariane";
+            this.BtnAriane.CategoryGuid = new System.Guid("6ffddb2b-9015-4d97-a4c1-91613e0ef537");
+            this.BtnAriane.Id = 19;
+            this.BtnAriane.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("BtnAriane.ImageOptions.SvgImage")));
+            this.BtnAriane.Name = "BtnAriane";
+            this.BtnAriane.Tag = 20;
+            this.BtnAriane.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.CarregarBanco);
+            // 
+            // BtnEmerson
+            // 
+            this.BtnEmerson.Caption = "Emerson";
+            this.BtnEmerson.Id = 20;
+            this.BtnEmerson.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("BtnEmerson.ImageOptions.SvgImage")));
+            this.BtnEmerson.Name = "BtnEmerson";
+            this.BtnEmerson.Tag = 19;
+            this.BtnEmerson.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.CarregarBanco);
+            // 
+            // BtnAnaFlavia
+            // 
+            this.BtnAnaFlavia.Caption = "Ana Flávia";
+            this.BtnAnaFlavia.Id = 13;
+            this.BtnAnaFlavia.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("BtnAnaFlavia.ImageOptions.SvgImage")));
+            this.BtnAnaFlavia.Name = "BtnAnaFlavia";
+            this.BtnAnaFlavia.Tag = 14;
+            this.BtnAnaFlavia.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.CarregarBanco);
+            // 
+            // BtnElizabeth
+            // 
+            this.BtnElizabeth.Caption = "Elizabeth";
+            this.BtnElizabeth.Id = 15;
+            this.BtnElizabeth.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("BtnElizabeth.ImageOptions.SvgImage")));
+            this.BtnElizabeth.Name = "BtnElizabeth";
+            this.BtnElizabeth.Tag = 16;
+            this.BtnElizabeth.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.CarregarBanco);
+            // 
+            // BtnJoao
+            // 
+            this.BtnJoao.Caption = "João";
+            this.BtnJoao.Id = 17;
+            this.BtnJoao.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("BtnJoao.ImageOptions.SvgImage")));
+            this.BtnJoao.Name = "BtnJoao";
+            this.BtnJoao.Tag = 18;
+            this.BtnJoao.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.CarregarBanco);
+            // 
+            // BtnEnio
+            // 
+            this.BtnEnio.Caption = "Enio";
+            this.BtnEnio.Id = 16;
+            this.BtnEnio.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("BtnEnio.ImageOptions.SvgImage")));
+            this.BtnEnio.Name = "BtnEnio";
+            this.BtnEnio.Tag = 17;
+            this.BtnEnio.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.CarregarBanco);
+            // 
+            // BtnMariaOdila
+            // 
+            this.BtnMariaOdila.Caption = "Maria Odila";
+            this.BtnMariaOdila.Id = 18;
+            this.BtnMariaOdila.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("BtnMariaOdila.ImageOptions.SvgImage")));
+            this.BtnMariaOdila.Name = "BtnMariaOdila";
+            this.BtnMariaOdila.Tag = 13;
+            this.BtnMariaOdila.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.CarregarBanco);
+            // 
+            // BtnBenedita
+            // 
+            this.BtnBenedita.Caption = "Benedita";
+            this.BtnBenedita.Id = 14;
+            this.BtnBenedita.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("BtnBenedita.ImageOptions.SvgImage")));
+            this.BtnBenedita.Name = "BtnBenedita";
+            this.BtnBenedita.Tag = 15;
+            this.BtnBenedita.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.CarregarBanco);
             // 
             // BtnCheques
             // 
@@ -233,6 +340,7 @@ namespace AnaliseFinanceira
             this.StatusBar = this.ribbonStatusBar;
             this.Text = "Extratos";
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.ResumeLayout(false);
@@ -258,5 +366,14 @@ namespace AnaliseFinanceira
         private DevExpress.XtraBars.BarButtonItem BtnMaquininhas;
         private DevExpress.XtraBars.BarButtonItem BtnCheques;
         private DevExpress.XtraBars.BarButtonItem BtnCaixa;
+        private DevExpress.XtraBars.PopupMenu popupMenu1;
+        private DevExpress.XtraBars.BarButtonItem BtnAnaFlavia;
+        private DevExpress.XtraBars.BarButtonItem BtnBenedita;
+        private DevExpress.XtraBars.BarButtonItem BtnAriane;
+        private DevExpress.XtraBars.BarButtonItem BtnEmerson;
+        private DevExpress.XtraBars.BarButtonItem BtnElizabeth;
+        private DevExpress.XtraBars.BarButtonItem BtnEnio;
+        private DevExpress.XtraBars.BarButtonItem BtnJoao;
+        private DevExpress.XtraBars.BarButtonItem BtnMariaOdila;
     }
 }
